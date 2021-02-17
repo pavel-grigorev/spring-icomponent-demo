@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+    <p th:text="'Hello, ' + ${username} + '!'"/>
+    <p>
+        Please follow the link <a th:href="${link}" th:text="${link}"/> to confirm your email address.
+    </p>
+    <p>
+        Thanks!
+    </p>
+</body>
+</html>
