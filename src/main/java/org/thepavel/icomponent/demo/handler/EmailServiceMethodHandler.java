@@ -51,7 +51,7 @@ public class EmailServiceMethodHandler implements MethodHandler {
 
     List<ParameterMetadata> parametersMetadata = methodMetadata.getParametersMetadata();
     Map<String, Object> parameters = new HashMap<>();
-    Set<String> to = new HashSet<>();
+    Set<String> emails = new HashSet<>();
 
     for (int i = 0; i < parametersMetadata.size(); i++) {
       MergedAnnotations parameterAnnotations = parametersMetadata.get(i).getAnnotations();
@@ -64,15 +64,15 @@ public class EmailServiceMethodHandler implements MethodHandler {
 
       if (parameterAnnotations.isPresent(To.class)) {
         if (parameterValue instanceof String) {
-          to.add((String) parameterValue);
+          emails.add((String) parameterValue);
         } else if (parameterValue instanceof User) {
           User user = (User) parameterValue;
-          to.add(user.getEmail());
+          emails.add(user.getEmail());
         }
       }
     }
 
-    emailSender.send(subject, template, parameters, to.toArray(new String[0]));
+    emailSender.send(subject, template, parameters, emails.toArray(new String[0]));
 
     return null;
   }
