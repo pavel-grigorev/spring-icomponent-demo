@@ -1,4 +1,4 @@
-This is a demo project for the [icomponent](https://github.com/pavel-grigorev/icomponent) library. It provides sample implementations of the `MethodHandler` and `MethodHandlerResolver` interfaces.
+This is a demo project for the [spring-icomponent](https://github.com/pavel-grigorev/spring-icomponent) library. It provides sample implementations of the `MethodHandler` and `MethodHandlerResolver` interfaces.
 
 Classes in the project imitate a typical application in the part responsible for sending emails. There is usually a transport service. Sending emails is all it does. It does not modify the message body or subject. It may look like so:
 
@@ -52,7 +52,7 @@ public class MyEmailService implements EmailService {
 }
 ```
 
-The demo project provides sample implementations of `MethodHandler` and `MethodHandlerResolver` that let us, with the help of [icomponent](https://github.com/pavel-grigorev/icomponent), turn that into this:
+The demo project provides sample implementations of `MethodHandler` and `MethodHandlerResolver` that let us, with the help of [spring-icomponent](https://github.com/pavel-grigorev/spring-icomponent), turn that into this:
 
 ```java
 @Service
