@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.thepavel:spring-icomponent:1.0.2'
+	implementation 'org.thepavel:spring-icomponent:1.0.5'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
