@@ -8,7 +8,7 @@ public interface EmailTransport {
 }
 ```
 
-Then, there is usually sort of an `EmailSender` that builds the message body based on a template and passes it to the email transport service. It may look like so:
+Then, there is usually sort of an `EmailSender` that builds the message body from a template and passes it to the `EmailTransport` service. It may look like so:
 
 ```java
 public interface EmailSender {
@@ -16,7 +16,7 @@ public interface EmailSender {
 }
 ```
 
-At last, there is an `EmailService` that provides API for the business classes. It may look like so:
+At last, there is an `EmailService` that provides API for the business logic. It may look like so:
 
 ```java
 public interface EmailService {
