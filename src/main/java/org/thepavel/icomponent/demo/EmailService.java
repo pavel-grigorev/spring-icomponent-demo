@@ -18,17 +18,10 @@ package org.thepavel.icomponent.demo;
 
 import org.springframework.stereotype.Service;
 import org.thepavel.icomponent.demo.annotations.Param;
-import org.thepavel.icomponent.demo.annotations.Subject;
-import org.thepavel.icomponent.demo.annotations.Template;
 import org.thepavel.icomponent.demo.annotations.To;
 
 @Service
 public interface EmailService {
-  @Subject("email.subject.confirmation")
-  @Template("confirmation")
-  void sendConfirmation(@Param("username") String username, @Param("link") String link, @To String email);
-
-  @Subject("email.subject.welcome")
-  @Template("welcome")
+  void sendConfirmation(@Param("name") String name, @Param("link") String link, @To String email);
   void sendWelcome(@Param("user") @To User user);
 }

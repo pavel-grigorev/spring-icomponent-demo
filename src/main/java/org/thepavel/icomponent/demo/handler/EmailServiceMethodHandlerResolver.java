@@ -17,10 +17,7 @@
 package org.thepavel.icomponent.demo.handler;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.MergedAnnotations;
 import org.springframework.stereotype.Component;
-import org.thepavel.icomponent.demo.annotations.Subject;
-import org.thepavel.icomponent.demo.annotations.Template;
 import org.thepavel.icomponent.handler.MethodHandler;
 import org.thepavel.icomponent.handler.resolver.MethodHandlerResolver;
 import org.thepavel.icomponent.metadata.MethodMetadata;
@@ -32,10 +29,10 @@ public class EmailServiceMethodHandlerResolver implements MethodHandlerResolver 
 
   @Override
   public MethodHandler getMethodHandler(MethodMetadata methodMetadata) {
-    MergedAnnotations annotations = methodMetadata.getAnnotations();
-    if (annotations.isPresent(Template.class) && annotations.isPresent(Subject.class)) {
-      return emailServiceMethodHandler;
-    }
-    return null;
+    return isSendMethod(methodMetadata) ? emailServiceMethodHandler : null;
+  }
+
+  private static boolean isSendMethod(MethodMetadata methodMetadata) {
+    return methodMetadata.getSourceMethod().getName().startsWith("send");
   }
 }

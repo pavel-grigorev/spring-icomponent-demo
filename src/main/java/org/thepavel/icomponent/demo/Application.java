@@ -20,24 +20,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.thepavel.icomponent.InterfaceComponentScan;
 
 @SpringBootApplication
 @InterfaceComponentScan
-public class Application {
+public class Application implements CommandLineRunner {
 	@Autowired
 	EmailService emailService;
 
-	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+	@Override
+	public void run(String... args) {
+		emailService.sendConfirmation("Mr. Smith", "goo.gl", "mr.smith@gmail.com");
+		emailService.sendWelcome(new UserImpl("Mrs. Smith", "mrs.smith@gmail.com"));
 	}
 
-	@Bean
-	CommandLineRunner commandLineRunner() {
-		return args -> {
-			emailService.sendConfirmation("Mr. Smith", "goo.gl", "mr.smith@gmail.com");
-			emailService.sendWelcome(new UserImpl("Mrs. Smith", "mrs.smith@gmail.com"));
-		};
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
 	}
 }

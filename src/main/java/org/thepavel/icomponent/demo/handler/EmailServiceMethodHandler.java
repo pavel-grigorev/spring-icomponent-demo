@@ -22,13 +22,12 @@ import org.springframework.stereotype.Component;
 import org.thepavel.icomponent.demo.EmailSender;
 import org.thepavel.icomponent.demo.User;
 import org.thepavel.icomponent.demo.annotations.Param;
-import org.thepavel.icomponent.demo.annotations.Subject;
-import org.thepavel.icomponent.demo.annotations.Template;
 import org.thepavel.icomponent.demo.annotations.To;
 import org.thepavel.icomponent.handler.MethodHandler;
 import org.thepavel.icomponent.metadata.MethodMetadata;
 import org.thepavel.icomponent.metadata.ParameterMetadata;
 
+import java.beans.Introspector;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -44,10 +43,11 @@ public class EmailServiceMethodHandler implements MethodHandler {
 
   @Override
   public Object handle(Object[] arguments, MethodMetadata methodMetadata) {
-    MergedAnnotations methodAnnotations = methodMetadata.getAnnotations();
+    // Cut off "send"
+    String emailType = methodMetadata.getSourceMethod().getName().substring(4);
 
-    String subject = methodAnnotations.get(Subject.class).getString(VALUE);
-    String template = methodAnnotations.get(Template.class).getString(VALUE);
+    String template = Introspector.decapitalize(emailType);
+    String subject = "email.subject." + template;
 
     List<ParameterMetadata> parametersMetadata = methodMetadata.getParametersMetadata();
     Map<String, Object> parameters = new HashMap<>();
