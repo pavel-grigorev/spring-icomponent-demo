@@ -4,7 +4,7 @@ The demo imitates a typical application in the part responsible for sending emai
 
 ```java
 public interface EmailService {
-  void sendConfirmation(String username, String link, String email);
+  void sendConfirmation(String name, String link, String email);
   void sendWelcome(User user);
 }
 ```
@@ -18,9 +18,9 @@ public class MyEmailService implements EmailService {
   EmailSender emailSender;
 
   @Override
-  public void sendConfirmation(String username, String link, String email) {
+  public void sendConfirmation(String name, String link, String email) {
     Map<String, Object> parameters = new HashMap<>();
-    parameters.put("username", username);
+    parameters.put("name", name);
     parameters.put("link", link);
 
     emailSender.send("email.subject.confirmation", "confirmation", parameters, email);
@@ -41,12 +41,7 @@ This demo provides the sample implementations of the `MethodHandler` and `Method
 ```java
 @Service
 public interface EmailService {
-  @Subject("email.subject.confirmation")
-  @Template("confirmation")
-  void sendConfirmation(@Param("username") String username, @Param("link") String link, @To String email);
-
-  @Subject("email.subject.welcome")
-  @Template("welcome")
+  void sendConfirmation(@Param("name") String name, @Param("link") String link, @To String email);
   void sendWelcome(@Param("user") @To User user);
 }
 ```
