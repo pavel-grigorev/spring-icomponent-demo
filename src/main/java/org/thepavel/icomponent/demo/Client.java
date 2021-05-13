@@ -16,12 +16,7 @@
 
 package org.thepavel.icomponent.demo;
 
-import org.springframework.stereotype.Service;
-import org.thepavel.icomponent.demo.annotations.Param;
-import org.thepavel.icomponent.demo.annotations.To;
-
-@Service
-public interface EmailService {
-  void sendConfirmation(@Param("name") String name, @Param("link") String link, @To String email);
-  void sendWelcome(@Param("user") @To User user);
+public interface Client {
+  String getName();
+  String getEmail();
 }

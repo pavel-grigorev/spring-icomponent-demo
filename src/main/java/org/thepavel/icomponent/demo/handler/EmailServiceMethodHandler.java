@@ -19,8 +19,8 @@ package org.thepavel.icomponent.demo.handler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.MergedAnnotations;
 import org.springframework.stereotype.Component;
+import org.thepavel.icomponent.demo.Client;
 import org.thepavel.icomponent.demo.EmailSender;
-import org.thepavel.icomponent.demo.User;
 import org.thepavel.icomponent.demo.annotations.Param;
 import org.thepavel.icomponent.demo.annotations.To;
 import org.thepavel.icomponent.handler.MethodHandler;
@@ -46,11 +46,11 @@ public class EmailServiceMethodHandler implements MethodHandler {
     // Cut off "send"
     String emailType = methodMetadata.getSourceMethod().getName().substring(4);
 
-    String template = Introspector.decapitalize(emailType);
-    String subject = "email.subject." + template;
+    String templateName = Introspector.decapitalize(emailType);
+    String subjectKeyInMessageBundle = "email.subject." + templateName;
 
     List<ParameterMetadata> parametersMetadata = methodMetadata.getParametersMetadata();
-    Map<String, Object> parameters = new HashMap<>();
+    Map<String, Object> templateParameters = new HashMap<>();
     Set<String> emails = new HashSet<>();
 
     for (int i = 0; i < parametersMetadata.size(); i++) {
@@ -59,20 +59,20 @@ public class EmailServiceMethodHandler implements MethodHandler {
 
       if (parameterAnnotations.isPresent(Param.class)) {
         String parameterName = parameterAnnotations.get(Param.class).getString(VALUE);
-        parameters.put(parameterName, parameterValue);
+        templateParameters.put(parameterName, parameterValue);
       }
 
       if (parameterAnnotations.isPresent(To.class)) {
         if (parameterValue instanceof String) {
           emails.add((String) parameterValue);
-        } else if (parameterValue instanceof User) {
-          User user = (User) parameterValue;
-          emails.add(user.getEmail());
+        } else if (parameterValue instanceof Client) {
+          Client client = (Client) parameterValue;
+          emails.add(client.getEmail());
         }
       }
     }
 
-    emailSender.send(subject, template, parameters, emails.toArray(new String[0]));
+    emailSender.send(subjectKeyInMessageBundle, templateName, templateParameters, emails);
 
     return null;
   }

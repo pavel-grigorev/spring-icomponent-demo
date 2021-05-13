@@ -14,24 +14,19 @@
  * limitations under the License.
  */
 
-package org.thepavel.icomponent.demo;
+package org.thepavel.icomponent.demo.annotations;
 
-public class UserImpl implements User {
-  private final String name;
-  private final String email;
+import org.springframework.stereotype.Service;
+import org.thepavel.icomponent.Handler;
 
-  public UserImpl(String name, String email) {
-    this.name = name;
-    this.email = email;
-  }
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-  @Override
-  public String getName() {
-    return name;
-  }
-
-  @Override
-  public String getEmail() {
-    return email;
-  }
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+@Service
+@Handler("emailServiceMethodHandler")
+public @interface EmailService {
 }

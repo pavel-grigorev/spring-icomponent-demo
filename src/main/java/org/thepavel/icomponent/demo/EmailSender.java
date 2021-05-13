@@ -16,8 +16,9 @@
 
 package org.thepavel.icomponent.demo;
 
+import java.util.Collection;
 import java.util.Map;
 
 public interface EmailSender {
-  void send(String subjectMessageName, String bodyTemplateName, Map<String, Object> templateParameters, String... to);
+  void send(String subjectMessageKey, String bodyTemplateName, Map<String, Object> templateParameters, Collection<String> to);
 }

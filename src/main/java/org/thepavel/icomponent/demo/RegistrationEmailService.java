@@ -16,12 +16,12 @@
 
 package org.thepavel.icomponent.demo;
 
-import java.util.Collection;
+import org.thepavel.icomponent.demo.annotations.EmailService;
+import org.thepavel.icomponent.demo.annotations.Param;
+import org.thepavel.icomponent.demo.annotations.To;
 
-public interface EmailTransport {
-  void send(String subject, String body, String... to);
-
-  default void send(String subject, String body, Collection<String> to) {
-    send(subject, body, to.toArray(new String[0]));
-  }
+@EmailService
+public interface RegistrationEmailService {
+  void sendConfirmation(@Param("name") String name, @Param("link") String link, @To String email);
+  void sendWelcome(@Param("client") @To Client client);
 }

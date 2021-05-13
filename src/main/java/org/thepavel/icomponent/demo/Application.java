@@ -26,12 +26,12 @@ import org.thepavel.icomponent.InterfaceComponentScan;
 @InterfaceComponentScan
 public class Application implements CommandLineRunner {
 	@Autowired
-	EmailService emailService;
+	RegistrationEmailService emailService;
 
 	@Override
 	public void run(String... args) {
 		emailService.sendConfirmation("Mr. Smith", "goo.gl", "mr.smith@gmail.com");
-		emailService.sendWelcome(new UserImpl("Mrs. Smith", "mrs.smith@gmail.com"));
+		emailService.sendWelcome(new ClientImpl("Mrs. Smith", "mrs.smith@gmail.com"));
 	}
 
 	public static void main(String[] args) {

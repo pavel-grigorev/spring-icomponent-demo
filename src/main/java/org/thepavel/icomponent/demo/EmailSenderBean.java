@@ -22,6 +22,7 @@ import org.springframework.stereotype.Component;
 import org.thymeleaf.ITemplateEngine;
 import org.thymeleaf.context.Context;
 
+import java.util.Collection;
 import java.util.Locale;
 import java.util.Map;
 
@@ -37,12 +38,12 @@ public class EmailSenderBean implements EmailSender {
   EmailTransport emailTransport;
 
   @Override
-  public void send(String subjectMessageName, String bodyTemplateName, Map<String, Object> templateParameters, String... to) {
-    emailTransport.send(getSubject(subjectMessageName), getBody(bodyTemplateName, templateParameters), to);
+  public void send(String subjectMessageKey, String bodyTemplateName, Map<String, Object> templateParameters, Collection<String> to) {
+    emailTransport.send(getSubject(subjectMessageKey), getBody(bodyTemplateName, templateParameters), to);
   }
 
-  private String getSubject(String subjectMessageName) {
-    return messageSource.getMessage(subjectMessageName, null, Locale.getDefault());
+  private String getSubject(String subjectMessageKey) {
+    return messageSource.getMessage(subjectMessageKey, null, Locale.getDefault());
   }
 
   private String getBody(String bodyTemplateName, Map<String, Object> parameters) {
