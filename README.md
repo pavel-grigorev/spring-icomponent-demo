@@ -1,15 +1,15 @@
-This is a demo for the [spring-icomponent](https://github.com/pavel-grigorev/spring-icomponent) library. It provides the sample implementations of the `MethodHandler` and `MethodHandlerResolver` interfaces.
+This is a demo for the [spring-icomponent](https://github.com/pavel-grigorev/spring-icomponent) library. It provides a sample implementation of the `MethodHandler` interface.
 
 The demo imitates a typical application in the part responsible for sending emails. There is an interface:
 
 ```java
-public interface EmailService {
+public interface RegistrationEmailService {
   void sendConfirmation(String name, String link, String email);
   void sendWelcome(User user);
 }
 ```
 
-A typical implementation of the `EmailService` interface may look like so:
+A typical implementation of the above interface may look like so:
 
 ```java
 @Service
@@ -36,7 +36,7 @@ public class MyEmailService implements EmailService {
 }
 ```
 
-This demo provides the sample implementations of the `MethodHandler` and `MethodHandlerResolver` interfaces that let us, with the help of [spring-icomponent](https://github.com/pavel-grigorev/spring-icomponent), turn the code above into this:
+This demo provides a sample implementation of the `MethodHandler` interface that let us, with the help of [spring-icomponent](https://github.com/pavel-grigorev/spring-icomponent), turn the code above into this:
 
 ```java
 @Service
