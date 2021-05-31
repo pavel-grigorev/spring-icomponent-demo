@@ -58,8 +58,8 @@ public class EmailServiceMethodHandler implements MethodHandler {
       Object parameterValue = arguments[i];
 
       if (parameterAnnotations.isPresent(Param.class)) {
-        String parameterName = parameterAnnotations.get(Param.class).getString(VALUE);
-        templateParameters.put(parameterName, parameterValue);
+        String templateParameterName = parameterAnnotations.get(Param.class).getString(VALUE);
+        templateParameters.put(templateParameterName, parameterValue);
       }
 
       if (parameterAnnotations.isPresent(To.class)) {
