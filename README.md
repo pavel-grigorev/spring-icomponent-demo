@@ -36,7 +36,7 @@ public class MyEmailService implements EmailService {
 }
 ```
 
-This demo provides a sample implementation of the `MethodHandler` interface that let us, with the help of [spring-icomponent](https://github.com/pavel-grigorev/spring-icomponent), turn the code above into this:
+This demo provides a sample implementation of the `MethodHandler` interface that lets us, with the help of [spring-icomponent](https://github.com/pavel-grigorev/spring-icomponent), turn the code above into this:
 
 ```java
 @Service
