@@ -1,9 +1,9 @@
-This is a demo for the [spring-icomponent](https://github.com/pavel-grigorev/spring-icomponent) library. It provides a sample implementation of the `MethodHandler` interface.
+This is a demo for the [spring-icomponent](https://github.com/pavel-grigorev/spring-icomponent) library. It provides a sample implementation of the `MethodHandler` interface. Follow [this link](https://dzone.com/articles/spring-beans-with-auto-generated-implementations-how-to) for a tutorial.
 
 The demo imitates a typical application in the part responsible for sending emails. There is an interface:
 
 ```java
-public interface RegistrationEmailService {
+public interface EmailService {
   void sendConfirmation(String name, String link, String email);
   void sendWelcome(User user);
 }
